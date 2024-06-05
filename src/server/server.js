@@ -1,14 +1,22 @@
-const express = require('express');
-const path = require('path');
+// const express = require('express');
+// const path = require('path');
 
 
-const starServer = (options) => {
+import express from 'express';
+import path from 'path';
+import {fileURLToPath} from 'url'
+
+
+export const starServer = (options) => {
     const {port, public_path = 'public'} =  options;
     
     
     const app = express();
 
     // Construimos la ruta absoluta para el contenido estático
+
+    const __filename = fileURLToPath(import.meta.url);
+    const __dirname = path.dirname(__filename);
 
     const publicDirectory = path.join(__dirname, '..',public_path);
 
@@ -33,6 +41,6 @@ const starServer = (options) => {
     });
 }
 
-module.exports = {
-    starServer
-}
+// module.exports = {
+//     starServer
+// }
